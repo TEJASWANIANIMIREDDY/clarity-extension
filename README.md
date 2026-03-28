@@ -1,4 +1,5 @@
 # 🚀 Clarity – Instant Context & Action Assistant
+> Understand anything you read — and know exactly what to do next.
 
 ## 💡 What is Clarity?
 Clarity is a Chrome extension that doesn't just explain what you read —  
@@ -74,6 +75,18 @@ In future versions, we plan to:
 - Support multiple domains like emails, education, and productivity workflows  
 
 Our goal is to make Clarity a true decision-making assistant, not just a text helper.
+
+---
+## 🔥 What Makes It Different?
+
+Unlike typical tools that only explain content, Clarity goes one step further:
+
+👉 It tells you what action to take next.
+
+This makes it useful for:
+- Emails → respond correctly  
+- Study → know what to revise  
+- Web content → know what to do  
 
 ---
 
