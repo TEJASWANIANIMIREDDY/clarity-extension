@@ -43,6 +43,7 @@ All in one click.
 
 ## 📸 Demo Preview
 
+![Clarity Demo](Screenshot.png)
 
 ---
 
