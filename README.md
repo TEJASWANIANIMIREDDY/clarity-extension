@@ -39,4 +39,3 @@ CSS
 JavaScript
 Chrome Extension APIs
 
-If you want, I can also make a killer repo description + tags + thumbnail idea so your GitHub looks more professional.
