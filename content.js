@@ -1,8 +1,5 @@
 console.log("Clarity extension running");
 
-// ✅ Store selected text globally
-let currentSelection = "";
-
 // Detect text selection
 document.addEventListener("mouseup", function (e) {
   const selectedText = window.getSelection().toString().trim();
@@ -13,15 +10,14 @@ document.addEventListener("mouseup", function (e) {
   // Prevent multiple popups
   if (document.getElementById("clarity-popup")) return;
 
-  // Avoid very small selections
+  // Avoid very small/accidental selections
   if (selectedText.length > 5) {
-    currentSelection = selectedText; // ✅ store selection
-    showPopup(e.pageX, e.pageY);
+    showPopup(e.pageX, e.pageY, selectedText);
   }
 });
 
 // Create popup
-function showPopup(x, y) {
+function showPopup(x, y, text) {
   removePopup();
 
   const popup = document.createElement("div");
@@ -31,12 +27,6 @@ function showPopup(x, y) {
     <div style="text-align:right;">
       <span id="close-btn" style="cursor:pointer;font-weight:bold;">❌</span>
     </div>
-
-    <!-- ✅ Selected text preview -->
-    <div style="font-size:12px;color:#555;margin-bottom:6px;">
-      "${currentSelection.substring(0, 100)}..."
-    </div>
-
     <textarea id="user-question" placeholder="Ask something..."></textarea>
     <button id="ask-btn">Ask</button>
     <div id="response"></div>
@@ -44,14 +34,9 @@ function showPopup(x, y) {
 
   document.body.appendChild(popup);
 
-  // ✅ Prevent clicks inside popup from affecting outside listeners
-  popup.addEventListener("mousedown", (e) => {
-    e.stopPropagation();
-  });
-
-  // ✅ Smart positioning (no overflow)
+  // ✅ Smart positioning (prevents overflow)
   const popupWidth = 260;
-  const popupHeight = 240;
+  const popupHeight = 220;
 
   let posX = x;
   let posY = y;
@@ -70,7 +55,7 @@ function showPopup(x, y) {
 
   // Ask button
   document.getElementById("ask-btn").onclick = () => {
-    handleAsk(currentSelection);
+    handleAsk(text);
   };
 
   // Close button
@@ -133,12 +118,9 @@ function removePopup() {
 document.addEventListener("mousedown", function (e) {
   const popup = document.getElementById("clarity-popup");
 
-  if (!popup) return;
-
-  // ✅ Do NOT close if clicking inside
-  if (popup.contains(e.target)) return;
-
-  popup.remove();
+  if (popup && !popup.contains(e.target)) {
+    popup.remove();
+  }
 });
 
 // ✅ Close popup on scroll
